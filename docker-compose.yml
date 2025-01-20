@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  flask:
+    build:
+      context: ./flask-app
+    ports:
+      - "5001:5001"
+    networks:
+      - app-network
+    depends_on:
+      - postgres
+
+  angular:
+    build:
+      context: ./angular-app
+    ports:
+      - "8080:80"
+    networks:
+      - app-network
+
+  postgres:
+    image: postgres:15
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db-init:/docker-entrypoint-initdb.d
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

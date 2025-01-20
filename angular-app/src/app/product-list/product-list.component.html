@@ -1,0 +1,56 @@
+<div class="product-container">
+  <h2>Product List</h2>
+
+  <!-- Search Input -->
+  <div>
+    <label for="search">Search by Name:</label>
+    <input
+      id="search"
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="filterProducts()"
+      placeholder="Enter product name"
+    />
+  </div>
+
+  <!-- Table -->
+  <table>
+    <thead>
+      <tr>
+        <th (click)="sortBy('id')" [class.sorted-asc]="sortDirection['id']" [class.sorted-desc]="!sortDirection['id'] && sortDirection['id'] !== undefined">ID</th>
+        <th (click)="sortBy('name')" [class.sorted-asc]="sortDirection['name']" [class.sorted-desc]="!sortDirection['name'] && sortDirection['name'] !== undefined">Name</th>
+        <th (click)="sortBy('type')" [class.sorted-asc]="sortDirection['type']" [class.sorted-desc]="!sortDirection['type'] && sortDirection['type'] !== undefined">Type</th>
+        <th>Picture</th>
+        <th (click)="sortBy('price')" [class.sorted-asc]="sortDirection['price']" [class.sorted-desc]="!sortDirection['price'] && sortDirection['price'] !== undefined">Price</th>
+        <th (click)="sortBy('description')" [class.sorted-asc]="sortDirection['description']" [class.sorted-desc]="!sortDirection['description'] && sortDirection['description'] !== undefined">Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of paginatedProducts">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.type }}</td>
+        <td>
+          <img [src]="product.picture" alt="{{ product.name }}" width="50" />
+        </td>
+        <td>{{ product.price | currency }}</td>
+        <td>{{ product.description }}</td>
+        <td>
+          <a [routerLink]="['/edit-product', product.id]">Edit</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination Controls -->
+  <div class="pagination">
+    <button
+      *ngFor="let page of [].constructor(totalPages); let i = index"
+      (click)="goToPage(i + 1)"
+      [class.active]="currentPage === i + 1"
+    >
+      {{ i + 1 }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+# Ignore node_modules folder
+node_modules/
+
+# Ignore build folders
+angular-app/dist/
+flask-app/__pycache__/
+flask-app/venv/
+
+# Ignore Docker-related files
+*.log
+

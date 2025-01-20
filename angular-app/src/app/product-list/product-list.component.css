@@ -1,0 +1,66 @@
+.product-container {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+img {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+th {
+  cursor: pointer;
+}
+
+th:hover {
+  text-decoration: underline;
+}
+
+th.sorted-asc::after {
+  content: ' 🔼'; /* Unicode for upward arrow */
+}
+
+th.sorted-desc::after {
+  content: ' 🔽'; /* Unicode for downward arrow */
+}
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  font-weight: bold;
+  border-color: #007bff;
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination button:hover {
+  background-color: #f0f0f0;
+}
